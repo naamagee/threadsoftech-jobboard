@@ -10,7 +10,7 @@ export default function Home() {
         <h2>:3</h2>
 
         <br />
-        
+
         <p>
          ╱|、<br />
         (˚ˎ 。7  <br />
