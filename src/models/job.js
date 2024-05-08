@@ -19,6 +19,8 @@ class Job {
         // contractLengthRangeMax
         jobTitle, // aka title 
         shortDescription, // aka subtitle
+        companyName,
+        companyLogoId,
         // jobApplicationType, // link or form 
         jobApplicationLink,
         //jobApplicationForm, // as id? figure this out
@@ -51,6 +53,8 @@ class Job {
         // this.contractLengthRangeMax
         this.jobTitle = jobTitle;
         this.shortDescription = shortDescription;
+        this.companyName = companyName,
+        this.companyLogoId = companyLogoId,
         this.jobApplicationLink = jobApplicationLink;
         this.payType = payType;
         this.hourlyRate = hourlyRate;
