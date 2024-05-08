@@ -7,11 +7,6 @@ export const metadata = { // TODO
   description: "copy about description",
 };
 
-if (typeof window !== 'undefined') {
-  LogRocket.init('app/id');
-  setupLogRocketReact(LogRocket);
-}
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
