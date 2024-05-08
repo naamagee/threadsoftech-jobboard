@@ -3,10 +3,8 @@ import "./globals.css";
 
 require('dotenv').config()
 
-const LogRocket = require('logrocket');
-const setupLogRocketReact = require('logrocket-react');
 const inter = Inter({ subsets: ["latin"] });
-export const metadata = {
+export const metadata = { // TODO
   title: "Threads of Tech - Fashion-Tech Jobboard Site Title",
   description: "copy about description",
 };
