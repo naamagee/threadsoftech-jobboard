@@ -1,9 +1,7 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
 
 require('dotenv').config()
 
-const inter = Inter({ subsets: ["latin"] });
 export const metadata = { // TODO
   title: "Threads of Tech - Fashion-Tech Jobboard Site Title",
   description: "copy about description",
