@@ -2,9 +2,10 @@ class Job {
     // all commented args here are left for future use, not including now bc simpler for now 
     constructor(
         id, // guid
+        companyId,
         //postedBy
         postedDate,
-        contactWebsite,
+        //contactWebsite,
         //contactEmailAddr
         //contactLink1
         //contactLink2
@@ -36,9 +37,10 @@ class Job {
         isActive // null and true mean active, false means not active (TODO: default dont select non actives to client)
     ) { 
         this.id = id;
+        this.companyId = companyId;
         //this.postedBy
         this.postedDate = postedDate;
-        this.contactWebsite = contactWebsite;
+        //this.contactWebsite = contactWebsite;
         //this.contactEmailAddr
         //this.contactLink1
         //this.contactLink2
