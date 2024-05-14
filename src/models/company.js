@@ -6,6 +6,7 @@ class Company {
         hqLocation, // variable, can be "City, USA", or "USA" or whatever 
         linkWebsite, // for all links - if null just dont show that element,
         linkXTwitter, // just show if content 
+        linkTikTok,
         linkInsta,
         linkFacebook,
         linkLinkedin,
@@ -20,6 +21,7 @@ class Company {
         this.hqLocation = hqLocation;
         this.linkWebsite = linkWebsite;
         this.linkXTwitter = linkXTwitter;
+        this.linkTikTok = linkTikTok;
         this.linkInsta = linkInsta;
         this.linkFacebook = linkFacebook;
         this.linkLinkedin = linkLinkedin;

@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getPerformance } from "firebase/performance";
+import { getFirestore } from "firebase/firestore";
+import './envConfig.js'
 
 const app = initializeApp({
     apiKey: process.env.FIRESTORE_APIKEY,
@@ -14,5 +14,3 @@ const app = initializeApp({
 });
 
 export const db = getFirestore(app);
-export const analytics = getAnalytics(app);
-export const perf = getPerformance(app);
