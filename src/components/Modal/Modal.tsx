@@ -89,6 +89,6 @@ function Modal() {
         </div>
       </Dialog>
     </>
-   
+  );
 }
 export default Modal;
