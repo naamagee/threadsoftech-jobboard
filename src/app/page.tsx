@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "../components/Grid/Grid";
 import Card from "../components/Card/Card";
-
+import Modal from "../components/Modal/Modal";
 export default function Home() {
   return (
     <main>
@@ -48,6 +48,7 @@ export default function Home() {
       </div>
       <div className="px-8 pt-4">
         <p className="font-medium text-4xl">OPEN JOBS for you</p>
+        <Modal/>
       </div>
       <Grid>
         <Card
