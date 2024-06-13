@@ -5,7 +5,11 @@ import {
   Dialog,
   DialogPanel,
   DialogTitle,
+  Input,
+  Label,
+  Field,
 } from "@headlessui/react";
+import Button from "../../design/Button/Button";
 import { useState } from "react";
 
 function Modal() {
@@ -81,9 +85,45 @@ function Modal() {
                 description description description description description
                 description description description description
               </Description>
-              <Description className="underline underline-offset-4">
-                Apply
-              </Description>
+
+              <Field>
+                <Label className="font-medium">Resume</Label>
+                <br />
+                <Input
+                  name="full_name"
+                  type="file"
+                  className="w-fit file:py-16 file:px-20
+      file:rounded-md file:border-2
+      file:text-sm file:font-semibold
+      file:bg-blue-100
+      hover:file:bg-blue-50 file:border-dashed file:border-blue-300"
+                />
+              </Field>
+              <Field>
+                <Label>Name</Label>
+                <Input
+                  name="full_name"
+                  type="text"
+                  className="w-full border rounded"
+                />
+              </Field>
+              <Field>
+                <Label>Email</Label>
+                <Input
+                  name="email"
+                  type="text"
+                  className="w-full border rounded"
+                />
+              </Field>
+              <Field>
+                <Label>LinkedIn</Label>
+                <Input
+                  name="linkedin"
+                  type="text"
+                  className="w-full border rounded"
+                />
+              </Field>
+              <Button>Apply</Button>
             </DialogPanel>
           </div>
         </div>
