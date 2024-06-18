@@ -8,10 +8,10 @@ const ListItem = ({ children }: { children: React.ReactNode }) => {
       {/* @junaama fix adding truncate */}
         <p className="text-black font-bold">{children}</p>
         <div className="gap-2 flex">
-          <Button>
+          {/* <Button>
             SAVE
-          </Button>
-          <Button secondary>
+          </Button> */}
+          <Button >
             APPLY
           </Button>
         </div>
