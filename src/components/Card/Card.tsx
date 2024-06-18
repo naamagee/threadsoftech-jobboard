@@ -12,7 +12,7 @@ type CardProps = {
 
 const Card = ({ header, description, listItems }: CardProps) => {
   return (
-    <div className="bg-zinc-200  gap-4 py-3 px-2 w-fit break-inside-avoid">
+    <div className="bg-zinc-100 gap-4 py-3 px-2 w-auto break-inside-avoid">
       <Header>{header}</Header>
       <Description>{description}</Description>
       {listItems.map((item) => (
