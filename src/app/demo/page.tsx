@@ -1,42 +1,33 @@
-//'use client'
+// "use client";
+import React from "react";
+import { _allJobsByCompanies } from "../../data/index";
+import Grid from "../../components/Grid/Grid";
+import Card from "../../components/Card/Card";
 
-import { collection, doc, setDoc, getDoc, getDocs, DocumentData } from "firebase/firestore";
-import { COMPANIES_COLLECTION_NAME, JOBS_COLLECTION_NAME } from "../../constants";
-import { db } from "../../firebase";
+export default async function Page() {
+  const allJobs = await _allJobsByCompanies();
 
-// async function getCompanies() {
-//     return await getDocs(collection(db, COMPANIES_COLLECTION_NAME))
-// }
+  // const allJobsMapped = allJobs.map((j) => {
+  //   return {
 
-async function getData() {
-  let companies: DocumentData[] = [],
-    jobs = [];
-  const firestoreCompaniesCollection = await getDocs(
-    collection(db, COMPANIES_COLLECTION_NAME)
-  );
-
-  firestoreCompaniesCollection.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    companies.push(doc.data());
-  });
-
-  return {
-    companies: companies,
-    //jobs: jobs
-  };
-}
-
-export default async function DataDemo() {
-  const firestoreData = await getData();
+  //   }})
 
   return (
-    <>
-      <h3>companies list</h3>
-      <div style={{ maxHeight: 500, overflowX: "scroll" }}>
-        {firestoreData.companies
-          ? JSON.stringify(firestoreData.companies)
-          : "no data"}
-      </div>
-    </>
+    <div>
+      {allJobs.length > 0 ? (
+        allJobs.map((j, i) => (
+          //  <Grid key={i}>
+          //   <Card
+          //     header={j.title}
+          //     description={j.subtitle}
+          //     listItems={j.Jobs.map((job) => job.jobTitle)}
+          //   />
+          //   </Grid>
+          <div>{JSON.stringify(j)}</div>
+        ))
+      ) : (
+        <div>No jobs available</div>
+      )}
+    </div>
   );
 }

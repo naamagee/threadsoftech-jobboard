@@ -11,13 +11,21 @@ import {
 } from "@headlessui/react";
 import Button from "../../design/Button/Button";
 import { useState } from "react";
+import { Job, CompanyWithJobs } from "@/types";
 
-function Modal() {
+function Modal({
+  children,
+  company,
+  job,
+}: {
+  children: React.ReactNode;
+  company?: CompanyWithJobs;
+  job: Job;
+}) {
   let [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>Open dialog</button>
+      <Button onClick={() => setIsOpen(true)}>{children}</Button>
       <Dialog
         open={isOpen}
         onClose={() => setIsOpen(false)}
@@ -28,11 +36,11 @@ function Modal() {
         <div className="fixed inset-0 w-screen overflow-y-auto pt-28">
           <div className="flex justify-center">
             <div className=" mt-0 bg-white w-fit p-4 -m-4 rounded font-bold text-5xl">
-              <p className="-mb-6 relative">THREDX</p>
+              <p className="-mb-6 relative">{company?.title}</p>
             </div>
           </div>
           <div className="flex items-center justify-center ">
-            <DialogPanel className="max-w-full space-y-8 rounded-xl bg-white p-24">
+            <DialogPanel className="min-w-full space-y-8 rounded-xl bg-white p-24">
               <button
                 onClick={() => setIsOpen(false)}
                 className="self-end bg-slate-200 rounded-full p-2 w-11  font-bold flex justify-center text-xl float-end -mt-16 -mr-16"
@@ -40,52 +48,31 @@ function Modal() {
                 <p className="text-slate-400">X</p>
               </button>
 
-              <Description>
-                Rediscover your wardrobe and get dressed with confidence. The
-                ThredX app will help to inspire all people to see, feel and
-                claim their power.
-              </Description>
+              <Description>{company?.subtitle}</Description>
               <Description>
                 <DialogTitle className="font-bold">
-                  Senior Content Designer
+                  {job?.jobTitle}
                 </DialogTitle>
-                Marketing | Part Time | 90K | Los Angeles, CA | Jun 17, 2024
+                <span>
+                  {job.tags.replace(/,/g, ", ").toUpperCase()} |{" "}
+                  {job.isContract
+                    ? "CONTRACT"
+                    : job.isInternship
+                    ? "INTERNSHIP"
+                    : "FULL TIME"}{" "}
+                  | ${job?.yearlySalary} |{" "}
+                  {job.isOnsite
+                    ? "ONSITE"
+                    : job.isHybrid
+                    ? "HYBRID"
+                    : job.isRemote
+                    ? "REMOTE"
+                    : ""}{" "}
+                  | {company?.hqLocation} | {job?.postedDate}
+                </span>
+                <span></span>
               </Description>
-              <Description className="underline underline-offset-4">
-                About
-              </Description>
-              <Description>
-                description description description description description
-                description description description description description
-                description description description description description
-                description description description
-              </Description>
-              <Description className="underline underline-offset-4">
-                Role
-              </Description>
-              <Description>
-                description description description description description
-                description description description description description
-                description description description description description
-                description description description
-              </Description>
-              <Description className="underline underline-offset-4">
-                Who You Are
-              </Description>
-              <Description>
-                description description description description description
-                description description description description description
-                description description description description description
-                description description description
-              </Description>
-              <Description className="underline underline-offset-4">
-                Qualifications
-              </Description>
-              <Description>
-                description description description description description
-                description description description description
-              </Description>
-
+              <Description>{job?.postContent}</Description>
               <Field>
                 <Label className="font-medium">Resume</Label>
                 <br />
