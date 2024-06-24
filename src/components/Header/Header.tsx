@@ -1,5 +1,5 @@
 import React from "react";
-import { libreCaslonDisplay, myFont } from "@/app/layout";
+import { libreCaslonDisplay, myFont } from "@/app/fonts/index";
 
 function Header() {
   return (

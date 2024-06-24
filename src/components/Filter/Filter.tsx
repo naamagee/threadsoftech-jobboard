@@ -1,4 +1,4 @@
-import { libreCaslonDisplay } from "@/app/layout";
+import { libreCaslonDisplay } from "@/app/fonts/index";
 import React from "react";
 
 const mockCategories = [

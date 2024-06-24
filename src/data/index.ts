@@ -1,4 +1,4 @@
-import { Job } from "@/types";
+import { Job, Company } from "@/types";
 import {
   fetchCompanies,
   fetchJobs,
@@ -6,7 +6,7 @@ import {
   fetchCompanyById,
 } from "../firebase";
 
-export async function _fetchCompanies() {
+export async function _fetchCompanies(): Promise<Company[]>{
   const res = await fetchCompanies();
 
   if (res === 0) {
@@ -16,7 +16,7 @@ export async function _fetchCompanies() {
   return res;
 }
 
-export async function _fetchJobs() {
+export async function _fetchJobs(): Promise<Job[]>{
   const res = await fetchJobs();
 
   if (res === 0) {
@@ -26,7 +26,7 @@ export async function _fetchJobs() {
   return res;
 }
 
-export async function _fetchJobsByCompany(companyIds: string[]) {
+export async function _fetchJobsByCompany(companyIds: string[]): Promise<Job[]> {
   const res = await fetchJobsByCompany(companyIds);
 
   if (res === 0) {
@@ -35,7 +35,11 @@ export async function _fetchJobsByCompany(companyIds: string[]) {
 
   return res;
 }
-
+type CompanyLookup = {
+  id: string;
+  // Include other properties of company objects as needed
+  Jobs: Job[]; // Use a more specific type instead of any if possible
+};
 export async function _allJobsByCompanies() {
   const companies = await _fetchCompanies();
   const companyIds = companies.map((c) => c.id);
@@ -44,7 +48,7 @@ export async function _allJobsByCompanies() {
   }
   const jobs = await _fetchJobsByCompany(companyIds);
 
-  const companyLookup = companies.reduce((acc, company) => {
+  const companyLookup: Record<string, CompanyLookup> = companies.reduce<Record<string, CompanyLookup>>((acc, company) => {
     acc[company.id] = {
       ...company,
       Jobs: [],
