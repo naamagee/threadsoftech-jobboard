@@ -2,8 +2,8 @@ import "./globals.css";
 
 export const metadata = {
   // TODO
-  title: "Threads of Tech - Fashion-Tech Jobboard Site Title",
-  description: "copy about description",
+  title: "Work In Fashion-Tech | Threads of Tech",
+  description: "Threads of Tech is curating a list of roles in fashion-tech.",
 };
 
 

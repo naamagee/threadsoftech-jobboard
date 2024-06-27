@@ -1,20 +1,16 @@
 export type Job = {
-    yearlySalary: string;
-    isInternship: boolean;
+    salary: string;
     postingCompanyId: string;
     jobTitle: string;
-    hourlySalary: string;
-    isHybrid: boolean;
     postedDate: string;
     isActive: boolean;
     postContent: string;
     id: string;
-    applicationLink: string;
-    isRemote: boolean;
-    isOnsite: boolean;
+    applicationLinks: string;
     tags: string;
     shortDescription: string;
-    isContract: boolean;
+    jobType: string
+    locationType: string;
   }
   
  export type Company = {
@@ -49,5 +45,6 @@ export type CompanyWithJobs = {
     companyContent: string;
     hqLocation: string;
     id: string;
+    companyLogoUrl: string;
     Jobs: Job[];  
   }

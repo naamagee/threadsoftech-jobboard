@@ -1,12 +1,13 @@
-import { Job, Company } from "@/types";
+import { Job, Company, CompanyWithJobs } from "@/types";
 import {
   fetchCompanies,
   fetchJobs,
   fetchJobsByCompany,
   fetchCompanyById,
+  fetchLogo,
 } from "../firebase";
 
-export async function _fetchCompanies(): Promise<Company[]>{
+export async function _fetchCompanies(): Promise<Company[]> {
   const res = await fetchCompanies();
 
   if (res === 0) {
@@ -16,7 +17,7 @@ export async function _fetchCompanies(): Promise<Company[]>{
   return res;
 }
 
-export async function _fetchJobs(): Promise<Job[]>{
+export async function _fetchJobs(): Promise<Job[]> {
   const res = await fetchJobs();
 
   if (res === 0) {
@@ -26,7 +27,9 @@ export async function _fetchJobs(): Promise<Job[]>{
   return res;
 }
 
-export async function _fetchJobsByCompany(companyIds: string[]): Promise<Job[]> {
+export async function _fetchJobsByCompany(
+  companyIds: string[]
+): Promise<Job[]> {
   const res = await fetchJobsByCompany(companyIds);
 
   if (res === 0) {
@@ -35,23 +38,45 @@ export async function _fetchJobsByCompany(companyIds: string[]): Promise<Job[]> 
 
   return res;
 }
-type CompanyLookup = {
-  id: string;
+type CompanyLookup = Company & {
+  companyLogoUrl: string;
   // Include other properties of company objects as needed
   Jobs: Job[]; // Use a more specific type instead of any if possible
 };
+
 export async function _allJobsByCompanies() {
   const companies = await _fetchCompanies();
   const companyIds = companies.map((c) => c.id);
-  if (!companyIds.length) {
+
+  // const companyLogoUrls = companies.map(
+  //   async (c) => await fetchLogo(c.companyLogoId))
+
+  
+if (!companyIds.length) {
     return {};
   }
   const jobs = await _fetchJobsByCompany(companyIds);
 
-  const companyLookup: Record<string, CompanyLookup> = companies.reduce<Record<string, CompanyLookup>>((acc, company) => {
+  const companyLogoUrls = await Promise.all(
+    companies.map(async (c) => {
+      const url = await fetchLogo(c.companyLogoId);
+      return { [c.id]: url };
+    })
+  ).then((res) => {
+    return res.reduce((acc, obj) => {
+      return { ...acc, ...obj };
+    }, {});
+  });
+    console.log("clu", companyLogoUrls)
+
+  const companyLookup: Record<string, CompanyWithJobs> = companies.reduce<
+    Record<string, CompanyLookup>
+  >((acc, company) => {
+    const companyLogoUrl = companyLogoUrls[company.id];
     acc[company.id] = {
       ...company,
       Jobs: [],
+      companyLogoUrl,
     };
     return acc;
   }, {});
@@ -63,6 +88,9 @@ export async function _allJobsByCompanies() {
       companyLookup[companyId].Jobs.push(job);
     }
   });
+
+  // companyLogoUrls.forEach((url, i) => {
+
 
   // Convert companyLookup to the desired format
   // return Object.values(companyLookup);
