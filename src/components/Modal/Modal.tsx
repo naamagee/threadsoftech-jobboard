@@ -12,6 +12,7 @@ import {
 import Button from "../../design/Button/Button";
 import { useState } from "react";
 import { Job, CompanyWithJobs } from "@/types";
+import Markdown from "react-markdown";
 
 function Modal({
   children,
@@ -25,7 +26,9 @@ function Modal({
   let [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <Button onClick={() => setIsOpen(true)}>{children}</Button>
+      <Button secondary onClick={() => setIsOpen(true)}>
+        {children}
+      </Button>
       <Dialog
         open={isOpen}
         onClose={() => setIsOpen(false)}
@@ -50,30 +53,19 @@ function Modal({
 
               <Description>{company?.subtitle}</Description>
               <Description>
-                <DialogTitle className="font-bold">
-                  {job?.jobTitle}
-                </DialogTitle>
+                <DialogTitle className="font-bold">{job?.jobTitle}</DialogTitle>
                 <span>
-                  {job.tags.replace(/,/g, ", ").toUpperCase()} |{" "}
-                  {job.isContract
-                    ? "CONTRACT"
-                    : job.isInternship
-                    ? "INTERNSHIP"
-                    : "FULL TIME"}{" "}
-                  | ${job?.yearlySalary} |{" "}
-                  {job.isOnsite
-                    ? "ONSITE"
-                    : job.isHybrid
-                    ? "HYBRID"
-                    : job.isRemote
-                    ? "REMOTE"
-                    : ""}{" "}
-                  | {company?.hqLocation} | {job?.postedDate}
+                  {job.tags.replace(/,/g, ", ").toUpperCase()} | {job.jobType} |{" "}
+                  {job?.salary} | {job.locationType} | {company?.hqLocation} |{" "}
+                  {job?.postedDate}
                 </span>
                 <span></span>
               </Description>
-              <Description>{job?.postContent}</Description>
-              <Field>
+              <Description>
+                <Markdown>{job?.postContent}</Markdown>
+              </Description>
+
+              {/* <Field>
                 <Label className="font-medium">Resume</Label>
                 <br />
                 <Input
@@ -109,8 +101,10 @@ function Modal({
                   type="text"
                   className="w-full border rounded"
                 />
-              </Field>
-              <Button>Apply</Button>
+              </Field>*/}
+              <Button asLink href={job.applicationLinks}>
+                APPLY
+              </Button>
             </DialogPanel>
           </div>
         </div>
