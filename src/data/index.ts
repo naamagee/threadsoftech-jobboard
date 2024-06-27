@@ -38,6 +38,7 @@ export async function _fetchJobsByCompany(
 
   return res;
 }
+
 type CompanyLookup = Company & {
   companyLogoUrl: string;
   // Include other properties of company objects as needed
@@ -47,10 +48,6 @@ type CompanyLookup = Company & {
 export async function _allJobsByCompanies() {
   const companies = await _fetchCompanies();
   const companyIds = companies.map((c) => c.id);
-
-  // const companyLogoUrls = companies.map(
-  //   async (c) => await fetchLogo(c.companyLogoId))
-
   
 if (!companyIds.length) {
     return {};
@@ -88,11 +85,6 @@ if (!companyIds.length) {
     }
   });
 
-  // companyLogoUrls.forEach((url, i) => {
-
-
-  // Convert companyLookup to the desired format
-  // return Object.values(companyLookup);
   const companiesWithJobs = Object.values(companyLookup).filter(
     (company) => company.Jobs.length > 0
   );

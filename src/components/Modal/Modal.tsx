@@ -61,8 +61,8 @@ function Modal({
                 </span>
                 <span></span>
               </Description>
-              <Description>
-                <Markdown>{job?.postContent}</Markdown>
+              <Description >
+                <Markdown className="prose">{job?.postContent}</Markdown>
               </Description>
 
               {/* <Field>
