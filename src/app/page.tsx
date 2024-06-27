@@ -13,19 +13,17 @@ import { fetchLogo } from "@/firebase";
 export default async function Home() {
   // const Logo = async ({ filename }: { filename: string }) => {
   //   const url = await fetchLogo(filename);
-  //   // console.log("urls", url);
   //   return filename !== "" ? <img height={50} src={url} /> : <img />;
   // };
   const allJobs: CompanyWithJobs[] =
     (await _allJobsByCompanies()) as CompanyWithJobs[];
 
-  console.log("allJobs", allJobs);
 
   return (
     <main className="relative">
       <div className="bg-sky-100 w-full h-auto p-4">
         <Header />
-        <Filter />
+        {/* <Filter /> */}
       </div>
       <Grid>
         {allJobs.map((j, i) => (

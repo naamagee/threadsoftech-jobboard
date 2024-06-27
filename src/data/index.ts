@@ -67,7 +67,6 @@ if (!companyIds.length) {
       return { ...acc, ...obj };
     }, {});
   });
-    console.log("clu", companyLogoUrls)
 
   const companyLookup: Record<string, CompanyWithJobs> = companies.reduce<
     Record<string, CompanyLookup>

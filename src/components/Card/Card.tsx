@@ -15,7 +15,6 @@ type CardProps = {
 };
 
 const Card = ({ header, description, listItems, logo }: CardProps) => {
-  console.log("filename:", logo);
   return (
     <div className="bg-zinc-100 gap-4 py-3 px-3 w-auto break-inside-avoid rounded-md">
       {/* <Header>{header}</Header> */}
