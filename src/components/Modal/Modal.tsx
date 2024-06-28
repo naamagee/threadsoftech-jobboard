@@ -43,10 +43,10 @@ function Modal({
             </div>
           </div>
           <div className="flex items-center justify-center ">
-            <DialogPanel className="min-w-full space-y-8 rounded-xl bg-white p-24">
+            <DialogPanel className="min-w-full space-y-8 rounded-xl bg-white p-16 lg:p-24">
               <button
                 onClick={() => setIsOpen(false)}
-                className="self-end bg-slate-200 rounded-full p-2 w-11  font-bold flex justify-center text-xl float-end -mt-16 -mr-16"
+                className="self-end bg-slate-200 rounded-full p-2 w-11  font-bold flex justify-center text-xl float-end -mt-8 -mr-8 lg:-mt-16 lg:-mr-16"
               >
                 <p className="text-slate-400">X</p>
               </button>
@@ -57,11 +57,11 @@ function Modal({
                 <span>
                   {job.tags.replace(/,/g, ", ").toUpperCase()} | {job.jobType} |{" "}
                   {job?.salary} | {job.locationType} | {company?.hqLocation} |{" "}
-                  {job?.postedDate}
+                  {job?.postedDate.split(" ").slice(0, 4).join(" ")}
                 </span>
                 <span></span>
               </Description>
-              <Description >
+              <Description>
                 <Markdown className="prose">{job?.postContent}</Markdown>
               </Description>
 
