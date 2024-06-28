@@ -14,7 +14,7 @@ const ListItem = ({
 }) => {
   return (
     <>
-      <p className="text-black font-bold">{children}</p>
+      <p className="text-black font-bold truncate hover:overflow-visible hover:whitespace-normal hover:h-auto">{children}</p>
       <div className="gap-2 flex">
          <Modal company={company} job={job}>
           INFO

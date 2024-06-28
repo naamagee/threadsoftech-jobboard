@@ -14,9 +14,8 @@ type CardProps = {
 };
 
 const Card = ({ header, description, listItems, logo }: CardProps) => {
-  console.log('logo', logo)
   return (
-    <div className="bg-zinc-100 gap-4 py-3 px-3 w-auto break-inside-avoid rounded-md">
+    <div className="bg-zinc-100 gap-4 py-3 px-3 break-inside-avoid rounded-md w-auto">
       {/* <Header>{header}</Header> */}
       <div className="flex justify-center items-center gap-4">
         <Image

@@ -5,9 +5,10 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: "firebasestorage.googleapis.com",
-                pathname: "/v0/b/threadsoftech-jobboard-tst.appspot.com/o/*",
+                pathname: "/v0/b/threads-of-tech-jobs.appspot.com/o/*",
             }
         ],
+        dangerouslyAllowSVG: true,
 
     }
 };
