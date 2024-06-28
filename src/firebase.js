@@ -22,7 +22,7 @@ const db = getFirestore(
     storageBucket: process.env.FIRESTORE_STORAGEBUCKET,
     messagingSenderId: process.env.FIRESTORE_MESSAGESENDERID,
     appId: process.env.FIRESTORE_APPID,
-    measurementId: process.env.FIRESTORE_MEASUREMENTID,
+    // measurementId: process.env.FIRESTORE_MEASUREMENTID,
   })
 );
 
