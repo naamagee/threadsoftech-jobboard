@@ -20,12 +20,12 @@ const Card = ({ header, description, listItems, logo }: CardProps) => {
       <div className="flex justify-center items-center gap-4">
         <Image
           src={logo}
-          alt="logo"
-          width={50}
-          height={50}
+          alt={header}
+          width={100}
+          height={100}
           className="justify-self-start self"
         />
-        <p className="text-4xl font-bold text-center ">{header}</p>
+        {/* <p className="text-4xl font-bold text-center ">{header}</p> */}
       </div>
 
       <Description>{description}</Description>
