@@ -11,7 +11,7 @@ function Footer() {
         <span className={`${myFont.className}`}>THREADS OF TECH</span> is a
         community for fashion creatives and technologists that hosts events for
         fashion-tech industry professionals. The fashion and beauty industry
-        attracts creative digital and technology projects that tech workers can
+        attracts creative digital and physical technology projects that tech workers can
         find valuable. Find your next role here to work at the intersection of
         creativity, luxury, art, and technology.
       </p>
