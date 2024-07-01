@@ -4,19 +4,18 @@ import { libreCaslonDisplay, myFont } from "@/app/fonts/index";
 function Footer() {
   return (
     <footer className="border border-t-1 border-r-0 border-l-0 border-b-0 border-black h-auto p-8 w-full bottom-0 mt-12">
-      <p
-        className={`${libreCaslonDisplay.className} font-medium text-2xl`}
-      >
+      <p className={`${libreCaslonDisplay.className} font-medium text-2xl`}>
         Why Work In Fashion-Tech?
       </p>
-      <p className="py-4 text-sm">
-        <span className={`${myFont.className}`}>THREADS OF TECH</span> started
-        as a community for fashion creatives and technologists and shifted into
-        private events for fashion-tech industry professionals. A legacy
-        industry needs reimagined changemakers for innovation within retail,
-        ecommerce, manufacturing, supply chain and more!
+      <p className="py-3 text-sm">
+        <span className={`${myFont.className}`}>THREADS OF TECH</span> is a
+        community for fashion creatives and technologists that hosts events for
+        fashion-tech industry professionals. The fashion and beauty industry
+        attracts creative digital and technology projects that tech workers can
+        find valuable. Find your next role here to work at the intersection of
+        creativity, luxury, art, and technology.
       </p>
-      <p className=" py-2 text-sm">
+      <p className="py-2 text-sm">
         Have a job you want featured? Want to give us feedback? DM or email us
         here.{" "}
       </p>
