@@ -13,18 +13,29 @@ import {
   STORAGE_BUCKET_LOGO_DIR,
 } from "./constants.js";
 
-const db = getFirestore(
-  initializeApp({
-    apiKey: process.env.FIRESTORE_APIKEY,
-    authDomain: process.env.FIRESTORE_AUTHDOMAIN,
-    databaseURL: process.env.FIRESTORE_DATABASEURL,
-    projectId: process.env.FIRESTORE_PROJECTID,
-    storageBucket: process.env.FIRESTORE_STORAGEBUCKET,
-    messagingSenderId: process.env.FIRESTORE_MESSAGESENDERID,
-    appId: process.env.FIRESTORE_APPID,
-    // measurementId: process.env.FIRESTORE_MEASUREMENTID,
-  })
-);
+// const app = initializeApp({
+//   apiKey: process.env.FIRESTORE_APIKEY,
+//   authDomain: process.env.FIRESTORE_AUTHDOMAIN,
+//   databaseURL: process.env.FIRESTORE_DATABASEURL,
+//   projectId: process.env.FIRESTORE_PROJECTID,
+//   storageBucket: process.env.FIRESTORE_STORAGEBUCKET,
+//   messagingSenderId: process.env.FIRESTORE_MESSAGESENDERID,
+//   appId: process.env.FIRESTORE_APPID,
+//   // measurementId: process.env.FIRESTORE_MEASUREMENTID,
+// });
+
+const app = initializeApp({
+  apiKey: process.env.NEXT_PUBLIC_FIRESTORE_APIKEY,
+  authDomain: process.env.NEXT_PUBLIC_FIRESTORE_AUTHDOMAIN,
+  databaseURL: process.env.NEXT_PUBLIC_FIRESTORE_DATABASEURL,
+  projectId: process.env.NEXT_PUBLIC_FIRESTORE_PROJECTID,
+  storageBucket: process.env.NEXT_PUBLIC_FIRESTORE_STORAGEBUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIRESTORE_MESSAGESENDERID,
+  appId: process.env.NEXT_PUBLIC_FIRESTORE_APPID,
+  measurementId: process.env.NEXT_PUBLIC_FIRESTORE_MEASUREMENTID
+});
+
+export const db = getFirestore(app);
 
 export async function fetchCompanies() {
   const q = query(collection(db, COMPANIES_COLLECTION_NAME)),
@@ -48,7 +59,10 @@ export async function fetchCompanies() {
 }
 
 export async function fetchJobs() {
-  const q = query(collection(db, JOBS_COLLECTION_NAME)),
+  const q = query(
+      collection(db, JOBS_COLLECTION_NAME),
+      where("isActive", "==", true)
+    ),
     querySnapshot = await getDocs(q);
 
   let jobs = [];
@@ -94,7 +108,8 @@ export async function fetchJobsByCompany(companyIds) {
   // Create a query to filter jobs by postingCompanyId
   const q = query(
     collection(db, JOBS_COLLECTION_NAME),
-    where("postingCompanyId", "in", companyIds)
+    where("postingCompanyId", "in", companyIds),
+    where("isActive", "==", true)
   );
 
   // Fetch the query results
