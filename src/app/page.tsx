@@ -11,7 +11,11 @@ export default async function Home() {
 
   const allJobs: CompanyWithJobs[] =
     (await _allJobsByCompanies()) as CompanyWithJobs[];
-
+  allJobs.sort((a,b)=> {
+    if (a.title === "Threads of Tech") return -1;  // Move special company to the start
+    if (b.title === "Threads of Tech") return 1;   // Keep special company at the start
+    return 0; 
+  })
   return (
     <>
       <main className="relative h-screen">
