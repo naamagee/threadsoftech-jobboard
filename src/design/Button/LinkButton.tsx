@@ -1,12 +1,16 @@
-import { Button as HeadlessButton } from "@headlessui/react";
 import React from "react";
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+type LinkButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   children: React.ReactNode;
   secondary?: boolean;
 };
 
-const Button = ({ children, secondary = false, ...rest }: ButtonProps) => {
+const LinkButton = ({
+  children,
+  secondary = false,
+  href,
+  ...rest
+}: LinkButtonProps) => {
   const className = `inline-flex items-center gap-2 rounded-xl ${
     secondary
       ? "bg-sky-100 text-black hover:bg-sky-200"
@@ -14,10 +18,16 @@ const Button = ({ children, secondary = false, ...rest }: ButtonProps) => {
   } py-1 px-3 shadow-inner shadow-white/10 focus:outline-none focus:outline-1 focus:outline-white`;
 
   return (
-    <HeadlessButton className={className} {...rest}>
+    <a
+      className={className}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      {...rest} // Spread the rest of the anchor-specific props
+    >
       {children}
-    </HeadlessButton>
+    </a>
   );
 };
 
-export default Button;
+export default LinkButton;
