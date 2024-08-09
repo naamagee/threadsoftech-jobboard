@@ -7,6 +7,7 @@ type ButtonProps = {
   secondary?: boolean;
   asLink?: boolean;
   href?: string;
+  onSubmit?: () => void;
 };
 
 const Button = ({
@@ -15,6 +16,7 @@ const Button = ({
   secondary = false,
   asLink,
   href,
+  onSubmit
 }: ButtonProps) => {
   const className = `inline-flex items-center gap-2 rounded-xl ${
     secondary
@@ -36,7 +38,7 @@ const Button = ({
     );
   }
   return (
-    <HeadlessButton className={className} onClick={onClick}>
+    <HeadlessButton className={className} onClick={onClick} onSubmit={onSubmit}>
       {children}
     </HeadlessButton>
   );
