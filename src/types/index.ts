@@ -11,6 +11,7 @@ export type Job = {
     shortDescription: string;
     jobType: string
     locationType: string;
+    embedApplication: string;
   }
   
  export type Company = {

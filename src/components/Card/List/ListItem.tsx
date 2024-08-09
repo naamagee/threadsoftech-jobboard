@@ -1,7 +1,7 @@
 import React from "react";
 import { Job, CompanyWithJobs } from "@/types";
 import Modal from "@/components/Modal/Modal";
-import Button from "@/design/Button/Button";
+import LinkButton from "@/design/Button/LinkButton"
 
 const ListItem = ({
   children,
@@ -19,7 +19,7 @@ const ListItem = ({
          <Modal company={company} job={job}>
           INFO
         </Modal>
-        <Button asLink href={job.applicationLinks}>APPLY</Button>
+        <LinkButton href={job.applicationLinks}>APPLY</LinkButton>
        
       </div>
     </>
