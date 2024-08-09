@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { ChangeEvent, FormEvent, SyntheticEvent } from "react";
 import {
   Description,
   Dialog,
@@ -47,24 +47,29 @@ function Modal({
     portfolio: "",
   };
   const [formData, setFormData] = useState(initialFormState);
-  const [resumeData, setResumeData] = useState(null);
+  const [resumeData, setResumeData] = useState<File | null | undefined>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
   };
-  const handleFileChange = (e) => {
-    setResumeData(e.target.files[0]);
-    setFormData({
-      ...formData,
-      resumeName: e.target.files[0].name,
-    });
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setResumeData(file);
+      setFormData({
+        ...formData,
+        resumeName: file.name,
+      });
+    }
   };
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const form = formRef.current;
@@ -74,7 +79,7 @@ function Modal({
       form.reportValidity();
 
       // Find the first invalid field
-      const firstInvalidElement = form.querySelector(":invalid");
+      const firstInvalidElement = form.querySelector(":invalid") as HTMLElement | null;;
 
       // Scroll to the first invalid field
       if (firstInvalidElement) {
