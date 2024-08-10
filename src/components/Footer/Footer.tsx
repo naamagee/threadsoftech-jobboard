@@ -48,11 +48,11 @@ function Footer() {
         </a>
         <a
           className="font-medium text-md md:text-lg hover:underline"
-          href="mailto:threadsoftechnyc@gmail.com"
+          href="mailto:info@threadsoftech.com"
           target="_blank"
           rel="noopener noreferrer"
         >
-          threadsoftech@gmail.com
+          info@threadsoftech.com
         </a>
       </div>
     </footer>
