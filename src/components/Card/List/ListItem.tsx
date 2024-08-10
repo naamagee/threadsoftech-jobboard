@@ -19,7 +19,7 @@ const ListItem = ({
          <Modal company={company} job={job}>
           INFO
         </Modal>
-        <LinkButton href={job.applicationLinks}>APPLY</LinkButton>
+        {!(company.title === "Threads of Tech") && (<LinkButton href={job.applicationLinks}>APPLY</LinkButton>)}
        
       </div>
     </>

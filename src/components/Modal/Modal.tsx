@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, FormEvent, SyntheticEvent } from "react";
+import React, { ChangeEvent, FormEvent } from "react";
 import {
   Description,
   Dialog,
@@ -22,7 +22,6 @@ import {
   STORAGE_BUCKET_APPS_DIR,
 } from "../../constants";
 import { db } from "../../firebase";
-import AlertModal from "./AlertModal";
 
 function Modal({
   children,
@@ -34,7 +33,7 @@ function Modal({
   job: Job;
 }) {
   let [isOpen, setIsOpen] = useState(false);
-  const [openAlert, setOpenAlert] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const initialFormState = {
     resumeName: "",
     name: "",
@@ -113,8 +112,7 @@ function Modal({
       console.error("Error uploading file:", error);
       return;
     } finally {
-      setIsOpen(false);
-      setOpenAlert(true);
+      setIsSubmitted(true)
       setFormData(initialFormState);
     }
   };
@@ -190,8 +188,8 @@ function Modal({
                             <p className="pl-1">or drag and drop</p>
                           </div>
                           <p className="text-xs leading-5 text-gray-600">
-                            PDF, DOCX, DOC, up to 5MB
-                          </p>
+              {formData.resumeName ? `Selected file: ${formData.resumeName}` : 'PDF, DOCX, DOC, up to 5MB'}
+            </p>
                         </div>
                       </div>
                     </div>
@@ -220,7 +218,7 @@ function Modal({
                       id="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      type="text"
+                      type="email"
                       placeholder="Your email here"
                       className="block w-full rounded-md border-0 py-1.5 pl-4 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-blue-700 sm:text-sm sm:leading-6 mt-2"
                       required
@@ -311,6 +309,7 @@ function Modal({
                     />
                   </Field>
                   <Button type="submit">SUBMIT</Button>
+                  {isSubmitted && <p className="text-green-400">Application submitted</p>}
                 </form>
               )}
 
@@ -321,7 +320,6 @@ function Modal({
           </div>
         </div>
       </Dialog>
-      <AlertModal open={openAlert} close={() => setOpenAlert(false)} />
     </>
   );
 }
