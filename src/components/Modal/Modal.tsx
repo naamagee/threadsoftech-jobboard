@@ -239,21 +239,7 @@ function Modal({
                       required
                     />
                   </Field>
-                  <Field>
-                    <Label>Phone Number</Label>
-                    <Label className="text-red-500 px-1">*</Label>
-
-                    <Input
-                      name="number"
-                      id="number"
-                      value={formData.number}
-                      onChange={handleInputChange}
-                      type="text"
-                      placeholder="111-111-1111"
-                      className="block w-full rounded-md border-0 py-1.5 pl-4 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-blue-700 sm:text-sm sm:leading-6 mt-2"
-                      required
-                    />
-                  </Field>
+                 
                   <Field>
                     <Label>Instagram</Label>
                     <Label className="text-red-500 px-1">*</Label>
@@ -266,6 +252,21 @@ function Modal({
                       placeholder="@"
                       className="block w-full rounded-md border-0 py-1.5 pl-4 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-blue-700 sm:text-sm sm:leading-6 mt-2"
                       required
+                    />
+                  </Field> 
+                  <Field>
+                    <Label>Phone Number</Label>
+                    {/* <Label className="text-red-500 px-1">*</Label> */}
+
+                    <Input
+                      name="number"
+                      id="number"
+                      value={formData.number}
+                      onChange={handleInputChange}
+                      type="text"
+                      placeholder="111-111-1111"
+                      className="block w-full rounded-md border-0 py-1.5 pl-4 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-blue-700 sm:text-sm sm:leading-6 mt-2"
+                      // required
                     />
                   </Field>
                   <Field>
