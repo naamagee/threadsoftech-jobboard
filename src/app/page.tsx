@@ -11,11 +11,7 @@ export default async function Home() {
 
   const allJobs: CompanyWithJobs[] =
     (await _allJobsByCompanies()) as CompanyWithJobs[];
-  allJobs.sort((a,b)=> {
-    if (a.title === "Threads of Tech") return -1;  // Move special company to the start
-    if (b.title === "Threads of Tech") return 1;   // Keep special company at the start
-    return 0; 
-  })
+  const filteredJobs = allJobs.filter(job => job.title !== "Threads of Tech");
   return (
     <>
       <main className="relative h-screen">
@@ -24,7 +20,7 @@ export default async function Home() {
           {/* <Filter /> */}
         </div>
         <Grid>
-          {allJobs.map((j, i) => (
+          {filteredJobs.map((j, i) => (
             <>
               <Card
                 key={i}
