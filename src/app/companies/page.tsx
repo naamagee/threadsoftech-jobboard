@@ -1,14 +1,53 @@
-import React from "react";
+'use client'
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { Tab } from "../../components/Header/Tab";
 import { CompanyDirectory } from "@/types";
 
-const CURRENT_URL = process.env.URL
+export default function Companies() {
+    const [companies, setCompanies] = useState<CompanyDirectory[]>([])
+    const [loading, setLoading] = useState(true)
 
-export default async function Companies() {
-    const data = await fetch(`${CURRENT_URL}api/`)
-    const companies: CompanyDirectory[] = await data.json()
+    useEffect(() => {
+        const fetchCompanies = async () => {
+            try {
+                setLoading(true)
+                const response = await fetch(`/api/`)
+                const data = await response.json()
+                setCompanies(data)
+            } catch (error) {
+                console.error("Error fetching companies", error)
+                setLoading(false)
+            } finally {
+                setLoading(false)
+            }
+        }
+        fetchCompanies()
+    }, [])
+
+    if (loading) return (
+        <>
+            <main className="relative h-screen">
+                <div className="bg-sky-100 w-full h-auto p-4">
+                    <Header />
+                </div>
+                <Tab />
+                <div className="container mx-auto  p-4 overflow-x-auto">
+                    <div className="flex justify-center">
+                        <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-sky-600" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <Footer />
+            </main>
+        </>
+    )
+
     if (!companies || companies.length === 0) return (
         <>
             <main className="relative h-screen">
@@ -16,7 +55,9 @@ export default async function Companies() {
                     <Header />
                 </div>
                 <Tab />
-                <div className="container mx-auto  p-4 overflow-x-auto"></div>
+                <div className="container mx-auto  p-4 overflow-x-auto">
+
+                </div>
 
                 <Footer />
             </main>
