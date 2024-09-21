@@ -12,7 +12,7 @@ export default async function Home() {
 
   const allJobs: CompanyWithJobs[] =
     (await _allJobsByCompanies()) as CompanyWithJobs[];
-  // const filteredJobs = allJobs.filter(job => job.title !== "Threads of Tech");
+  const filteredJobs = allJobs.filter(job => job.title !== "Threads of Tech");
 
   return (
     <>
@@ -23,7 +23,7 @@ export default async function Home() {
         </div>
         <Tab/>
         <Grid>
-          {allJobs.map((j, i) => (
+          {filteredJobs.map((j, i) => (
             // <>
               <Card
                 key={i}
