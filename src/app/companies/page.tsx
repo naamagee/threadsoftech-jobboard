@@ -22,7 +22,6 @@ export default async function Companies() {
             </main>
         </>
     )
-    if (companies) { companies.sort((a, b) => a.name.localeCompare(b.name)); }
     return (
         <>
             <main className="relative h-screen">
