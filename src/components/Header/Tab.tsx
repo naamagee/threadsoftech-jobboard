@@ -8,7 +8,7 @@ export const Tab = () => {
     const pathname = usePathname(); // Get current route
 
     // Function to check if a tab is active
-    const isActive = (path) => pathname === path;
+    const isActive = (path: string) => pathname === path;
 
     return (
         <div className={`${libreCaslonDisplay.className} flex justify-between w-full text-2xl border-b-1 border border-zinc-300 border-r-0 border-l-0 border-t-0 divide-x divide-zinc-300`}>

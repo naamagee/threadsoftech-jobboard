@@ -2,32 +2,34 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { Tab } from "../../components/Header/Tab";
+import { CompanyDirectory } from "@/types";
+
+const CURRENT_URL = process.env.URL
 
 export default async function Companies() {
-    const data = await fetch(`http://localhost:3000/api/`)
-    const companies = await data.json()
-console.log("com", companies)
-    if (!companies || companies.length === 0 || companies.data.length === 0) return (
+    const data = await fetch(`${CURRENT_URL}api/`)
+    const companies: CompanyDirectory[] = await data.json()
+    if (!companies || companies.length === 0) return (
         <>
-         <main className="relative h-screen">
+            <main className="relative h-screen">
                 <div className="bg-sky-100 w-full h-auto p-4">
                     <Header />
                 </div>
-                <Tab/>
+                <Tab />
                 <div className="container mx-auto  p-4 overflow-x-auto"></div>
-             
+
                 <Footer />
             </main>
         </>
     )
-
+    companies.sort((a, b) => a.name.localeCompare(b.name));
     return (
         <>
             <main className="relative h-screen">
                 <div className="bg-sky-100 w-full h-auto p-4">
                     <Header />
                 </div>
-                <Tab/>
+                <Tab />
                 <div className="container mx-auto  p-4 overflow-x-auto">
                     <table className="table table-auto ">
                         <thead className="text-left bg-sky-100">

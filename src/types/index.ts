@@ -49,3 +49,11 @@ export type CompanyWithJobs = {
     companyLogoUrl: string;
     Jobs: Job[];  
   }
+
+  export type CompanyDirectory = {
+    name: string
+    description: string
+    location: string
+    website: string
+    canIntro?: string
+  }
