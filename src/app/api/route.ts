@@ -12,8 +12,6 @@ export async function GET() {
                 "client_email": process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
                 "client_id": process.env.GOOGLE_SHEETS_CLIENT_ID,
                 "universe_domain": "googleapis.com"
-
-
             },
             scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
         });
@@ -33,7 +31,7 @@ export async function GET() {
             const introIndex = headers.indexOf('CAN INTRO');
 
             // Filter and map the rows
-            return Response.json(rows.slice(1) // Skip the header row
+            const allRows = rows.slice(1) // Skip the header row
                 .filter(row => {
                     // Check if required rows are present
                     return row[nameIndex] && row[nameIndex].trim() !== '' &&
@@ -47,12 +45,21 @@ export async function GET() {
                     website: row[websiteIndex],
                     // Include website only if it exists
                     ...(row[introIndex] && { canIntro: row[introIndex] })
-                })));
+                }));
+            return Response.json(allRows)
+
+        } else {
+            return Response.json(
+                { error: "Failed to get companies" },
+
+            )
         }
+
     } catch (err) {
         console.log(err);
+        return Response.json({ error: `Error: ${err}` })
     }
-    const data: Array<null> = []
-    return Response.json({ data })
+    // const data: Array<null> = []
+    // return NextResponse.json({ data })
 
 }
