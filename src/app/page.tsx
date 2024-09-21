@@ -6,12 +6,14 @@ import Filter from "../components/Filter/Filter";
 import Footer from "@/components/Footer/Footer";
 import { _allJobsByCompanies } from "../data/index";
 import { CompanyWithJobs } from "@/types";
+import { Tab } from "../components/Header/Tab";
 
 export default async function Home() {
 
   const allJobs: CompanyWithJobs[] =
     (await _allJobsByCompanies()) as CompanyWithJobs[];
-  const filteredJobs = allJobs.filter(job => job.title !== "Threads of Tech");
+  // const filteredJobs = allJobs.filter(job => job.title !== "Threads of Tech");
+
   return (
     <>
       <main className="relative h-screen">
@@ -19,8 +21,9 @@ export default async function Home() {
           <Header />
           {/* <Filter /> */}
         </div>
+        <Tab/>
         <Grid>
-          {filteredJobs.map((j, i) => (
+          {allJobs.map((j, i) => (
             <>
               <Card
                 key={i}
