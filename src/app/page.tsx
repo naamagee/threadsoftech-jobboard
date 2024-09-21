@@ -24,7 +24,7 @@ export default async function Home() {
         <Tab/>
         <Grid>
           {allJobs.map((j, i) => (
-            <>
+            // <>
               <Card
                 key={i}
                 header={j.title}
@@ -32,7 +32,7 @@ export default async function Home() {
                 logo={j.companyLogoUrl}
                 listItems={j}
               />
-            </>
+            // </>
           ))}
         </Grid>
         <Footer />
