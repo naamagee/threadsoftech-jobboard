@@ -11,8 +11,10 @@ export default function Companies() {
     const [sortCriteria, setSortCriteria] = useState<string>('name'); // Default sort by name
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc'); // Default sort direction
 
+    
     const sortCompanies = (companies: CompanyDirectory[], criteria: string, direction: 'asc' | 'desc') => {
         return [...companies].sort((a, b) => {
+            // @ts-ignore
             const comparison = a[criteria] < b[criteria] ? -1 : a[criteria] > b[criteria] ? 1 : 0;
             return direction === 'asc' ? comparison : -comparison; // Reverse comparison for descending
         });
