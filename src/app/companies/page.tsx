@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { Tab } from "../../components/Header/Tab";
-import { CompanyDirectory } from "@/types";
+import { CompanyDirectory } from "../../types";
 
 export default function Companies() {
     const [companies, setCompanies] = useState<CompanyDirectory[]>([])
