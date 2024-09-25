@@ -32,7 +32,7 @@ export async function _fetchJobsByCompany(
 ): Promise<Job[]> {
   const res = await fetchJobsByCompany(companyIds);
 
-  if (res === 0) {
+  if (!res || res.length === 0 ) {
     throw new Error("Failed to fetch jobs data");
   }
 

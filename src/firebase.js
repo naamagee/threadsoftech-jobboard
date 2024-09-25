@@ -106,31 +106,59 @@ export async function fetchCompanyById(companyId) {
 }
 export async function fetchJobsByCompany(companyIds) {
   // Create a query to filter jobs by postingCompanyId
-  const q = query(
-    collection(db, JOBS_COLLECTION_NAME),
-    where("postingCompanyId", "in", companyIds),
-    where("isActive", "==", true)
-  );
+  const chunkSize = 30;
+  let allJobs = [];
 
-  // Fetch the query results
-  const querySnapshot = await getDocs(q);
+  // Split companyIds into chunks of 30 or fewer
+  for (let i = 0; i < companyIds.length; i += chunkSize) {
+    const chunk = companyIds.slice(i, i + chunkSize);
 
-  // Process the results into an array of jobs
-  let jobs = [];
+    // Create a query to filter jobs by postingCompanyId for this chunk
+    const q = query(
+      collection(db, JOBS_COLLECTION_NAME),
+      where("postingCompanyId", "in", chunk),
+      where("isActive", "==", true)
+    );
 
-  return new Promise((resolve) => {
+    // Fetch the query results
+    const querySnapshot = await getDocs(q);
+
+    // Process the results and add to allJobs
     if (querySnapshot) {
       querySnapshot.forEach((doc) => {
         let jobDoc = doc.data();
         jobDoc.id = doc.id;
-        jobs.push(jobDoc);
+        allJobs.push(jobDoc);
       });
-
-      resolve(jobs);
-    } else {
-      resolve([]);
     }
-  });
+  }
+
+  return allJobs;
+  // const q = query(
+  //   collection(db, JOBS_COLLECTION_NAME),
+  //   where("postingCompanyId", "in", companyIds),
+  //   where("isActive", "==", true)
+  // );
+
+  // // Fetch the query results
+  // const querySnapshot = await getDocs(q);
+
+  // // Process the results into an array of jobs
+  // let jobs = [];
+
+  // return new Promise((resolve) => {
+  //   if (querySnapshot) {
+  //     querySnapshot.forEach((doc) => {
+  //       let jobDoc = doc.data();
+  //       jobDoc.id = doc.id;
+  //       jobs.push(jobDoc);
+  //     });
+
+  //     resolve(jobs);
+  //   } else {
+  //     resolve([]);
+  //   }
+  // });
 }
 export async function fetchLogo(filename) {
   const storage = getStorage();
