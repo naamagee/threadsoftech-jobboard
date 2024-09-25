@@ -12,7 +12,15 @@ export default async function Home() {
 
   const allJobs: CompanyWithJobs[] =
     (await _allJobsByCompanies()) as CompanyWithJobs[];
-  const filteredJobs = allJobs.filter(job => job.title !== "Threads of Tech");
+  const filteredJobs = allJobs
+    .filter(company => company.title !== "Threads of Tech")
+    .map(company => ({
+      ...company,
+      Jobs: company.Jobs.filter(job => job.isActive !== false),
+      mostRecentJobDate: Math.max(...company.Jobs.filter(job => job.isActive !== false).map(job => new Date(job.postedDate).getTime()))
+    }))
+    .filter(company => company.Jobs.length > 0)
+    .sort((a, b) => b.mostRecentJobDate - a.mostRecentJobDate);
 
   return (
     <>

@@ -9,3 +9,9 @@ jobboard for ToT
  - copy [example.env](.env.example), rename as '.env', fill in values
  - `$ npm run dev`
  - its hosted on localhost:3000
+
+ ## docs
+ - next.js
+ - firebase
+ - tailwindcss
+ - google sheets api
