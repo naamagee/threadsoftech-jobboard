@@ -1,5 +1,7 @@
+import Script from "next/script";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata = {
   title: "Fashion-Tech Jobs | Threads of Tech",
@@ -41,6 +43,22 @@ export default function RootLayout({
     <html lang="en">
       <body>{children}</body>
       <Analytics />
+      <GoogleAnalytics gaId="G-CJV0VJNGDN" />
+      <Script id="schema-org" type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Threads of Tech Job Board",
+              "url": "https://jobs.threadsoftech.com",
+              "logo": "https://jobs.threadsoftech.com/favicon.ico",
+              "sameAs": [
+                "https://github.com/naamagee"
+              ]
+            }
+          `}
+        </Script>
+
     </html>
   );
 }
